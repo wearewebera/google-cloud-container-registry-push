@@ -2,8 +2,9 @@ name: "Container Image to GCR"
 description: "Push container image to Google Cloud Container Registry"
 
 
-branding: "fly"
-color: "red"
+branding:
+  icon: "upload-cloud"
+  color: "blue"
 
 inputs:
   credentials:
