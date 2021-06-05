@@ -9,20 +9,17 @@ or use a tool like [Terraform](https://www.terraform.io).
 * Create a [Google Cloud](https:console.cloud.google.com) Project
 * Enable Container Registry API
 * Create Service Account with Role `Storage Admin` and export a new JSON key.
-  * First step you have to create the GitHub Account to access the Google Cloud 
-Container Registry
 ```
+# First step you have to create the GitHub Account to access the Google Cloud 
+Container Registry
 gcloud iam service-accounts create github-actions --display-name="GitHub" \
   --project <project name>
-```
-  * Add storage admin role
-```
+
+# Add storage admin role
 gcloud projects add-iam-policy-binding <project name>\
   --member='serviceAccount:github-actions@<project name>.iam.gserviceaccount.com' \
   --role='roles/storage.admin'
-```
-  * Create the JSON secret
-```
+# Create the JSON secret
 gcloud iam service-accounts keys create \
   --iam-account=github-actions@<google project>.iam.gserviceaccount.com \
   serviceAccount.json
