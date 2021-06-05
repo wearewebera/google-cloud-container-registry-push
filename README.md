@@ -1,4 +1,4 @@
-# GitHub Action Container to GCP
+# GitHub Action Push Container Image to GCP
 
 
 ## Prerequisites
