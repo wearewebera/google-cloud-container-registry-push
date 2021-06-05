@@ -1,0 +1,28 @@
+name: "Container Image to GCR"
+description: "Push container image to Google Cloud Container Registry"
+
+
+branding: "fly"
+color: "red"
+
+inputs:
+  credentials:
+    description: "Service account JSON key"
+    required: true
+  project:
+    description: "Google Cloud project name"
+    required: true
+  image:
+    description: "Container image name"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Push container image to Google Cloud Registry"
+      shell: bash
+      run: |
+        docker login -u _json_key -p '${{ inputs.credentials }}' 'https://gcr.io'
+        docker tag ${{ inputs.image }} gcr.io/${{ inputs.project }}/${{ inputs.image }}
+        docker push gcr.io/${{ inputs.project }}/${{ inputs.image }}
+
